@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Arcangel</title>
+    <style>
+        :root {
+            --primary-color: #1a3a5a; /* Azul Marinho Acadêmico */
+            --secondary-color: #e5eef5; /* Fundo suave */
+            --accent-color: #c5a059; /* Dourado/Bronze para destaque */
+            --text-color: #333;
+            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .app-preview {
+            width: 100%;
+            height: 200px;
+            background: #ddd;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            background-image: url('URL_DA_SUA_IMAGEM_AQUI'); /* Adicione o print do App */
+            background-size: cover;
+            background-position: center;
+            border: 2px solid var(--primary-color);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p.description {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .question-label {
+            font-weight: bold;
+            font-size: 18px;
+            display: block;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        /* Grid de Opções */
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .option-card {
+            border: 2px solid #eee;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .option-card:hover {
+            border-color: var(--accent-color);
+            background-color: #fffaf0;
+        }
+
+        input[type="radio"] {
+            margin-right: 15px;
+            accent-color: var(--primary-color);
+        }
+
+        .option-text {
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #2c527a;
+        }
+
+        /* Mobile Friendly */
+        @media (max-width: 480px) {
+            .container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="app-preview"></div>
+    
+    <h1>Arcangel</h1>
+    <p class="description">Sua percepção ajuda a moldar o futuro das nossas ferramentas de análise social.</p>
+
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSf2lYWvPoXGJbJX4U4Szjo8Dgdz8T4uGvnOoxvcSHlrsOx7_g/formResponse" method="POST">
+        
+        <label class="question-label">Você indicaria o aplicativo para outra pessoa?</label>
+        
+        <div class="options-grid">
+            <label class="option-card">
+                <input type="radio" name="entry.1204051764" value="Sim" required>
+                <span class="option-text">Sim, com certeza</span>
+            </label>
+
+            <label class="option-card">
+                <input type="radio" name="entry.1204051764" value="Indicaria, mas com ressalvas">
+                <span class="option-text">Indicaria, mas com ressalvas</span>
+            </label>
+
+            <label class="option-card">
+                <input type="radio" name="entry.1204051764" value="Indicaria depois de implementar mudanças">
+                <span class="option-text">Indicaria após melhorias</span>
+            </label>
+
+            <label class="option-card">
+                <input type="radio" name="entry.1204051764" value="Não indicaria">
+                <span class="option-text">Não indicaria no momento</span>
+            </label>
+        </div>
+
+        <input type="hidden" name="entry.1378000373" value="EXEMPLO_NOME">
+        <input type="hidden" name="entry.1225650832" value="0">
+        <input type="hidden" name="entry.762545937" value="EXEMPLO_EXPERIENCIA">
+
+        <button type="submit">Enviar Feedback</button>
+    </form>
+</div>
+
+</body>
+</html>
