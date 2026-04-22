@@ -3,164 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback Arcangel</title>
+    <title>Inscrição | Experiência Minimalista</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #1a3a5a; /* Azul Marinho Acadêmico */
-            --secondary-color: #e5eef5; /* Fundo suave */
-            --accent-color: #c5a059; /* Dourado/Bronze para destaque */
-            --text-color: #333;
-            --card-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            --primary: #2563eb;
+            --bg: #f8fafc;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--secondary-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             display: flex;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .container {
-            max-width: 600px;
+        .form-container {
+            background: var(--card-bg);
             width: 100%;
-            background: #fff;
+            max-width: 520px;
             padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--card-shadow);
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
         }
 
-        .app-preview {
-            width: 100%;
-            height: 200px;
-            background: #ddd;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            background-image: url('URL_DA_SUA_IMAGEM_AQUI'); /* Adicione o print do App */
-            background-size: cover;
-            background-position: center;
-            border: 2px solid var(--primary-color);
+        header {
+            margin-bottom: 32px;
         }
 
         h1 {
-            color: var(--primary-color);
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
         }
 
-        p.description {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
+        p.subtitle {
+            color: var(--text-light);
+            font-size: 0.9rem;
         }
 
-        .question-label {
-            font-weight: bold;
-            font-size: 18px;
+        .input-group {
+            margin-bottom: 24px;
+        }
+
+        label {
             display: block;
-            margin-bottom: 20px;
-            color: var(--primary-color);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text);
         }
 
-        /* Grid de Opções */
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            outline: none;
         }
 
-        .option-card {
-            border: 2px solid #eee;
-            padding: 15px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
             display: flex;
             align-items: center;
-            position: relative;
+            gap: 8px;
+            font-size: 0.95rem;
+            cursor: pointer;
         }
 
-        .option-card:hover {
-            border-color: var(--accent-color);
-            background-color: #fffaf0;
-        }
-
-        input[type="radio"] {
-            margin-right: 15px;
-            accent-color: var(--primary-color);
-        }
-
-        .option-text {
-            font-size: 16px;
+        .radio-option input {
+            accent-color: var(--primary);
+            width: 18px;
+            height: 18px;
         }
 
         button {
             width: 100%;
-            background-color: var(--primary-color);
+            padding: 14px;
+            background-color: var(--primary);
             color: white;
-            padding: 15px;
             border: none;
             border-radius: 8px;
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 30px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: opacity 0.2s;
+            margin-top: 10px;
         }
 
         button:hover {
-            background-color: #2c527a;
+            opacity: 0.9;
         }
 
-        /* Mobile Friendly */
-        @media (max-width: 480px) {
-            .container { padding: 20px; }
+        .footer-note {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 0.75rem;
+            color: var(--text-light);
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="app-preview"></div>
-    
-    <h1>Arcangel</h1>
-    <p class="description">Sua percepção ajuda a moldar o futuro das nossas ferramentas de análise social.</p>
+<div class="form-container">
+    <header>
+        <h1>Formulário de Candidatura</h1>
+        <p class="subtitle">Preencha os dados abaixo para prosseguirmos.</p>
+    </header>
 
-    <form action="https://docs.google.com/forms/d/e/1FAIpQLSf2lYWvPoXGJbJX4U4Szjo8Dgdz8T4uGvnOoxvcSHlrsOx7_g/formResponse" method="POST">
-        
-        <label class="question-label">Você indicaria o aplicativo para outra pessoa?</label>
-        
-        <div class="options-grid">
-            <label class="option-card">
-                <input type="radio" name="entry.1204051764" value="Sim" required>
-                <span class="option-text">Sim, com certeza</span>
-            </label>
-
-            <label class="option-card">
-                <input type="radio" name="entry.1204051764" value="Indicaria, mas com ressalvas">
-                <span class="option-text">Indicaria, mas com ressalvas</span>
-            </label>
-
-            <label class="option-card">
-                <input type="radio" name="entry.1204051764" value="Indicaria depois de implementar mudanças">
-                <span class="option-text">Indicaria após melhorias</span>
-            </label>
-
-            <label class="option-card">
-                <input type="radio" name="entry.1204051764" value="Não indicaria">
-                <span class="option-text">Não indicaria no momento</span>
-            </label>
+    <form action="#" method="POST">
+        <div class="input-group">
+            <label for="nome">Qual o seu nome?</label>
+            <input type="text" id="nome" name="entry.1378000373" placeholder="Seu nome completo" required>
         </div>
 
-        <input type="hidden" name="entry.1378000373" value="EXEMPLO_NOME">
-        <input type="hidden" name="entry.1225650832" value="0">
-        <input type="hidden" name="entry.762545937" value="EXEMPLO_EXPERIENCIA">
+        <div class="input-group">
+            <label for="idade">Qual a sua idade?</label>
+            <input type="number" id="idade" name="entry.1225650832" placeholder="Ex: 25" min="0" required>
+        </div>
 
-        <button type="submit">Enviar Feedback</button>
+        <div class="input-group">
+            <label for="experiencia">Conte um pouco da sua experiência</label>
+            <textarea id="experiencia" name="entry.762545937" rows="4" placeholder="Descreva suas habilidades e projetos..."></textarea>
+        </div>
+
+        <div class="input-group">
+            <label>Você tem interesse em participar?</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" name="entry.1204051764" value="Sim" checked> Sim
+                </label>
+                <label class="radio-option">
+                    <input type="radio" name="entry.1204051764" value="Não"> Não
+                </label>
+            </div>
+        </div>
+
+        <button type="submit">Enviar Resposta</button>
     </form>
+
+    <div class="footer-note">
+        Suas informações estão seguras conosco.
+    </div>
 </div>
 
 </body>
