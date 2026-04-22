@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscrição | Experiência Minimalista</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Pesquisa de Satisfação | Spatial UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --bg: #f8fafc;
-            --text: #1e293b;
-            --text-light: #64748b;
-            --card-bg: #ffffff;
-            --border: #e2e8f0;
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --accent: #6366f1;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
         }
 
         * {
@@ -22,60 +21,71 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: radial-gradient(circle at top left, #e0e7ff 0%, #f8fafc 50%, #f1f5f9 100%);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
             padding: 20px;
+            color: var(--text-main);
         }
 
-        .form-container {
-            background: var(--card-bg);
+        /* Efeito de Vidro (Glassmorphism) */
+        .spatial-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
             width: 100%;
-            max-width: 520px;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+            max-width: 540px;
+            padding: 48px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 
+                        0 1px 3px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .spatial-card:hover {
+            transform: translateY(-5px);
         }
 
         header {
-            margin-bottom: 32px;
+            margin-bottom: 40px;
+            text-align: center;
         }
 
         h1 {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
             font-weight: 600;
+            letter-spacing: -0.03em;
             margin-bottom: 8px;
-            letter-spacing: -0.02em;
         }
 
-        p.subtitle {
-            color: var(--text-light);
-            font-size: 0.9rem;
+        .subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
         }
 
-        .input-group {
-            margin-bottom: 24px;
+        .field-group {
+            margin-bottom: 32px;
         }
 
         label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text);
+            margin-bottom: 12px;
+            color: var(--text-main);
         }
 
         input[type="text"],
-        input[type="number"],
         textarea {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 14px 18px;
             font-family: inherit;
             font-size: 1rem;
             transition: all 0.2s ease;
@@ -83,98 +93,161 @@
         }
 
         input:focus, textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+            background: #fff;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
         }
 
-        .radio-group {
+        /* Escala de Satisfação 0-10 */
+        .satisfaction-scale {
             display: flex;
-            gap: 16px;
+            justify-content: space-between;
+            gap: 4px;
             margin-top: 8px;
         }
 
-        .radio-option {
+        .scale-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .scale-item input {
+            display: none;
+        }
+
+        .scale-item label {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
+            justify-content: center;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: 400;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            border: 1px solid transparent;
         }
 
-        .radio-option input {
-            accent-color: var(--primary);
-            width: 18px;
-            height: 18px;
+        .scale-item input:checked + label {
+            background: var(--accent);
+            color: white;
+            font-weight: 600;
+            transform: scale(1.1);
         }
 
-        button {
+        /* Switch Customizado */
+        .choice-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .choice-btn {
+            flex: 1;
+        }
+
+        .choice-btn input {
+            display: none;
+        }
+
+        .choice-btn label {
+            display: block;
+            padding: 12px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            cursor: pointer;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: all 0.2s;
+        }
+
+        .choice-btn input:checked + label {
+            background: #10b981;
+            color: white;
+        }
+
+        .choice-btn input[value="Não"]:checked + label {
+            background: #ef4444;
+        }
+
+        button.submit-btn {
             width: 100%;
-            padding: 14px;
-            background-color: var(--primary);
+            padding: 16px;
+            background: var(--accent);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 14px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s;
-            margin-top: 10px;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+            transition: all 0.2s;
         }
 
-        button:hover {
-            opacity: 0.9;
+        button.submit-btn:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
         }
 
-        .footer-note {
-            text-align: center;
-            margin-top: 24px;
-            font-size: 0.75rem;
-            color: var(--text-light);
+        @media (max-width: 480px) {
+            .spatial-card { padding: 24px; }
+            .satisfaction-scale { flex-wrap: wrap; }
+            .scale-item { flex: 0 0 18%; }
         }
     </style>
 </head>
 <body>
 
-<div class="form-container">
+<div class="spatial-card">
     <header>
-        <h1>Formulário de Candidatura</h1>
-        <p class="subtitle">Preencha os dados abaixo para prosseguirmos.</p>
+        <h1>Pesquisa de satisfação</h1>
+        <p class="subtitle">Sua opinião ajuda a moldar nosso futuro.</p>
     </header>
 
-    <form action="#" method="POST">
-        <div class="input-group">
-            <label for="nome">Qual o seu nome?</label>
-            <input type="text" id="nome" name="entry.1378000373" placeholder="Seu nome completo" required>
+    <form>
+        <div class="field-group">
+            <label for="nome">Informe seu nome</label>
+            <input type="text" id="nome" placeholder="Como podemos te chamar?" required>
         </div>
 
-        <div class="input-group">
-            <label for="idade">Qual a sua idade?</label>
-            <input type="number" id="idade" name="entry.1225650832" placeholder="Ex: 25" min="0" required>
-        </div>
-
-        <div class="input-group">
-            <label for="experiencia">Conte um pouco da sua experiência</label>
-            <textarea id="experiencia" name="entry.762545937" rows="4" placeholder="Descreva suas habilidades e projetos..."></textarea>
-        </div>
-
-        <div class="input-group">
-            <label>Você tem interesse em participar?</label>
-            <div class="radio-group">
-                <label class="radio-option">
-                    <input type="radio" name="entry.1204051764" value="Sim" checked> Sim
-                </label>
-                <label class="radio-option">
-                    <input type="radio" name="entry.1204051764" value="Não"> Não
-                </label>
+        <div class="field-group">
+            <label>Sua satisfação com o aplicativo (0 a 10)</label>
+            <div class="satisfaction-scale">
+                <div class="scale-item"><input type="radio" name="score" id="s0" value="0"><label for="s0">0</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s1" value="1"><label for="s1">1</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s2" value="2"><label for="s2">2</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s3" value="3"><label for="s3">3</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s4" value="4"><label for="s4">4</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s5" value="5" checked><label for="s5">5</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s6" value="6"><label for="s6">6</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s7" value="7"><label for="s7">7</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s8" value="8"><label for="s8">8</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s9" value="9"><label for="s9">9</label></div>
+                <div class="scale-item"><input type="radio" name="score" id="s10" value="10"><label for="s10">10</label></div>
             </div>
         </div>
 
-        <button type="submit">Enviar Resposta</button>
-    </form>
+        <div class="field-group">
+            <label for="exp">Explique como foi sua experiência</label>
+            <textarea id="exp" rows="3" placeholder="O que você mais gostou ou o que podemos melhorar?"></textarea>
+        </div>
 
-    <div class="footer-note">
-        Suas informações estão seguras conosco.
-    </div>
+        <div class="field-group">
+            <label>Você indicaria o aplicativo para outra pessoa?</label>
+            <div class="choice-group">
+                <div class="choice-btn">
+                    <input type="radio" name="refer" id="yes" value="Sim" checked>
+                    <label for="yes">Sim, com certeza</label>
+                </div>
+                <div class="choice-btn">
+                    <input type="radio" name="refer" id="no" value="Não">
+                    <label for="no">Não no momento</label>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar Feedback</button>
+    </form>
 </div>
 
 </body>
